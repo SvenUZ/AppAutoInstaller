@@ -162,13 +162,13 @@ namespace Task_Manager
                     J7zip["Link"] = ZipNewLink;
                 }
                 // Ist der Name "Dell Updater" in der Datenbank -> dann aktualisier den Link
-                if (name.Contains("dell updater"))
+                if (name.Contains("dell updater") || name.Contains("Dell Updater"))
                 {
                     var selectedProgrammIndex = jlinks.Select((x, index) => new { Code = x.Value<string>("Name"), Node = x, Index = index })
                                          .Single(x => x.Code == name)
                                          .Index;
                     var Jdellupdate = (JObject)jlinks[selectedProgrammIndex];
-                    Jdellupdate["Link"] = ZipNewLink;
+                    Jdellupdate["Link"] = DellUpdateNewLink;
                 }
             }
 

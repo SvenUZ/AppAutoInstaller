@@ -52,6 +52,20 @@ namespace Task_Manager
         {
             string latestLink = "";
 
+            HtmlWeb hw = new HtmlWeb();
+            HtmlAgilityPack.HtmlDocument doc = hw.Load("https://www.dell.com/support/home/de-de/drivers/DriversDetails?driverId=PWD0M");
+
+            var nodes = doc.DocumentNode.SelectNodes("//a[@href]");
+            foreach (var node in nodes)
+            {
+                string link = node.Attributes["href"].Value;
+                if (link.Contains(".EXE"))
+                {
+                    //System.Windows.Forms.MessageBox.Show(node.Attributes["href"].Value);
+                    latestLink = node.Attributes["href"].Value;
+                }
+            }
+
             return latestLink;
         }
     }

@@ -29,20 +29,6 @@ namespace Task_Manager
             progressBar1.Value = e.ProgressPercentage;
         }
 
-        // "Install Signal"-Button
-        void button1_Click(object sender, EventArgs e)
-        {
-            StreamReader sr = new StreamReader("db.json");
-            var array = JArray.Parse(sr.ReadToEnd());
-
-            var selectedIndex = array.Select((x, index) => new { Code = x.Value<string>("Name"), Node = x, Index = index })
-                                         .Single(x => x.Code == "Signal")
-                                         .Index;
-
-            var jprogramm = (JObject)array[selectedIndex];
-            Download(jprogramm["Name"].ToString() + ".exe", jprogramm["Link"].ToString());
-        }
-
         // Funktion "IsValidJson"
         public static bool IsValidJson(string strInput)
         {
@@ -74,11 +60,6 @@ namespace Task_Manager
             }
         }
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
         {
 
         }
